@@ -7,8 +7,14 @@ import time
 @click.command()
 @click.option('--filename', prompt="Enter Your Test File(make sure to be in your cwd)")
 @click.option('--function', prompt="Enter Your Function to be Tested")
-# @click.option('--arguments', prompt="enter arguments")
-def test(filename,function):
+@click.option('--arguments', prompt="number of arguments")
+def test(filename,function,arguments):
+    arg = "" #for getting arguments of an array
+    print(f"\033[31mEnter the Arguments each in different line: \033[0m")
+    for i in range(int(arguments)):
+        a=input()
+        arg+=a+","
+    result = int(input("enter desired o/p: "))#for storing the desired o/p value
     current_directory = os.getcwd()
     if(not pathlib.Path(f"{filename}.py").exists()):
         print(f"\033[31mFatal Error: file {filename} does not Exist\033[0m")
@@ -24,7 +30,7 @@ from importlib.machinery import SourceFileLoader
 foo = SourceFileLoader("{filename}.py", f"{os.getcwd()}/{filename}.py").load_module()
 
 def test_method():
-    assert foo.{function}(1,2) == 8"""
+    assert foo.{function}({arg}) == {result}"""
         new_file.write(content)
         new_file.close()
         time.sleep(2)
