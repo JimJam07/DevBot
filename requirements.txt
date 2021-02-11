@@ -1,3 +1,4 @@
 click==7.1.2
 PyGithub==1.53
 requests==2.24.0
+pytest==6.2.1
